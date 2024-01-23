@@ -1,0 +1,26 @@
+{% if todos %}
+
+<div class="card">
+    <ul class="list-group list-group-flush">
+        {% for todo in todos %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="{% if todo.completed %} text-success text-decoration-line-through {% endif %}">
+                {{ todo.title }}
+            </div>
+            <div>
+                <span class="action badge rounded-pill text-bg-warning" hx-put="/todos/{{todo.id}}"
+                      hx-target="#todoList" style="cursor: pointer;">✔</span>
+                <span class="action badge rounded-pill text-bg-danger" hx-delete="/todos/{{todo.id}}"
+                      hx-target="#todoList" hx-confirm="Are you sure you want to delete?"
+                      style="cursor: pointer;">X</span>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% else %}
+
+<h5>No todos</h5>
+
+{% endif %}

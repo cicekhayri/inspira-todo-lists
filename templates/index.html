@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Todos {% endblock %}
+{% block content %}
+
+<h3 class="my-5">Welcome to Inspira Todo List App</h3>
+<form hx-post="/todos/create" hx-target="#todoList" class="mx-auto">
+    <div class="mb-3 row align-items-center">
+        <label for="todoText" class="col-auto col-form-label">Enter your todo here: </label>
+        <div class="col-6">
+            <input type="text" name="title" class="form-control" id="todoText" required>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-success">Add</button>
+        </div>
+    </div>
+</form>
+<div id="todoList">
+    {% include 'todo-list.html' %}
+</div>
+
+{% endblock %}
+
